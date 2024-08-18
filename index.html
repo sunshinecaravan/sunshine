@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +14,35 @@
             color: red;
         }
         header {
-            background: red;
+            position: relative;
             color: white;
             text-align: center;
             padding: 1rem;
+            overflow: hidden;
+            height: 300px; /* Adjust as needed */
+        }
+        header video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -1;
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 0, 0, 0.6); /* Semi-transparent red background */
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
         }
         header h1, header p {
             color: white;
+            margin: 0;
         }
         main {
             padding: 2rem;
@@ -85,19 +106,33 @@
             width: 30%;
             margin-bottom: 1rem;
         }
+        .social-links {
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>☀️ Sunshine Caravan Holidays</h1>
-        <p>At Butlin's Minehead - Your Perfect Family Getaway!</p>
+        <video autoplay loop muted playsinline>
+            <source src="images/header-background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="header-content">
+            <h1>☀️ Sunshine Caravan Holidays</h1>
+            <p>At Butlin's Minehead - Your Perfect Family Getaway!</p>
+        </div>
     </header>
     
     <main>
         <div class="carousel">
-            <img src="caravan1.jpg" alt="Exterior view of our caravan">
-            <img src="caravan2.jpg" alt="Interior view of our caravan">
-            <!-- Add more caravan images as needed -->
+            <img src="images/caravan1.jpg" alt="Exterior view of our caravan">
+            <img src="images/caravan2.jpg" alt="Interior view of our caravan">
+            
         </div>
 
         <h2>Welcome to Your Home Away From Home!</h2>
@@ -105,10 +140,10 @@
 
         <h2>🎡 Fantastic Features at Butlin's Minehead</h2>
         <div class="image-gallery">
-            <img src="fair.jpg" alt="Fair rides at Butlin's">
-            <img src="swimming-pool.jpg" alt="Swimming pool with slides">
-            <img src="skypark.jpg" alt="New Skypark for all abilities">
-            <img src="entertainment.jpg" alt="Entertainment at Butlin's">
+            <img src="images/fair.jpg" alt="Fair rides at Butlin's">
+            <img src="images/swimming-pool.jpg" alt="Swimming pool with slides">
+            <img src="images/skypark.jpg" alt="New Skypark for all abilities">
+            <img src="images/entertainment.jpg" alt="Entertainment at Butlin's">
         </div>
         <div class="features">
             <div class="feature">🎢 Fair Rides</div>
@@ -124,8 +159,8 @@
         <h2>🎵 Adult Music Weekenders</h2>
         <p>Join us for exciting adult-only music weekends featuring top artists and tribute bands!</p>
         <div class="image-gallery">
-            <img src="music-weekend1.jpg" alt="Adult music weekend event">
-            <img src="music-weekend2.jpg" alt="Live performance at music weekend">
+            <img src="images/music-weekend1.jpg" alt="Adult music weekend event">
+            <img src="images/music-weekend2.jpg" alt="Live performance at music weekend">
         </div>
 
         <h2>🍔 Food Venues</h2>
@@ -141,15 +176,15 @@
 
         <h2>🎣 Fishing Lake</h2>
         <p>Relax and unwind at our beautiful fishing lake.</p>
-        <img src="fishing-lake.jpg" alt="Fishing lake at Butlin's Minehead" style="width: 100%; margin-bottom: 1rem;">
+        <img src="images/fishing-lake.jpg" alt="Fishing lake at Butlin's Minehead" style="width: 100%; margin-bottom: 1rem;">
 
         <h2>🏖️ Opposite Minehead Beach</h2>
         <p>Just a stone's throw away from the beautiful Minehead Beach!</p>
-        <img src="minehead-beach.jpg" alt="Minehead Beach" style="width: 100%; margin-bottom: 1rem;">
+        <img src="images/minehead-beach.jpg" alt="Minehead Beach" style="width: 100%; margin-bottom: 1rem;">
 
         <h2>⛳ Golf Course Next Door</h2>
         <p>Golf enthusiasts will love the nearby golf course.</p>
-        <img src="golf-course.jpg" alt="Adjacent golf course" style="width: 100%; margin-bottom: 1rem;">
+        <img src="images/golf-course.jpg" alt="Adjacent golf course" style="width: 100%; margin-bottom: 1rem;">
 
         <h2>🏙️ Close to Local Attractions</h2>
         <ul>
@@ -174,6 +209,11 @@
 
     <footer>
         <p>&copy; 2024 Sunshine Caravan Holidays. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61552132257458" target="_blank">Facebook Page</a>
+            <a href="https://www.instagram.com/invites/contact/?i=1d3akq6lakkub&utm_content=uu6ci3l" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/groups/1112415433454628/?ref=share" target="_blank">Facebook Group</a>
+        </div>
     </footer>
 </body>
 </html>
