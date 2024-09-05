@@ -219,7 +219,7 @@
         
         <button id="bookNowButton" class="cta-button">Book Now!</button>
 
-<iframe id="availabilityCalendar" class="availability-calendar" name="availability-calendar" src="https://www.holidayavailabilitycalendar.com/f/1370/" height="480" frameborder="0"></iframe>
+<iframe id="availabilityCalendar" class="availability-calendar" name="availability-calendar" src="https://www.holidayavailabilitycalendar.com/f/1370/" height="480" width="420"frameborder="0"></iframe>
 ```
     </main>
 
@@ -231,5 +231,41 @@
             <a href="https://www.facebook.com/groups/1112415433454628/?ref=share" target="_blank">Facebook Group</a>
         </div>
     </footer>
+        <script>
+        // Carousel auto-scroll script
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const items = carousel.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % items.length;
+                carousel.scrollTo({
+                    left: items[currentIndex].offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Change slide every 5 seconds (5000 milliseconds)
+            setInterval(showNext, 5000);
+        });
+
+        // Book Now button script
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookNowButton = document.getElementById('bookNowButton');
+            const availabilityCalendar = document.getElementById('availabilityCalendar');
+
+            bookNowButton.addEventListener('click', function() {
+                if (availabilityCalendar.style.display === 'none' || availabilityCalendar.style.display === '') {
+                    availabilityCalendar.style.display = 'block';
+                    bookNowButton.textContent = 'Hide Calendar';
+                    availabilityCalendar.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    availabilityCalendar.style.display = 'none';
+                    bookNowButton.textContent = 'Book Now!';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
