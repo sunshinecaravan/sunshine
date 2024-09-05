@@ -1,0 +1,207 @@
+Index
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Caravan Holidays - Butlin's Minehead</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+        header {
+            background-image: url('images/header-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .header-content {
+            background-color: rgba(255, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .book-now {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #FF4136;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+        }
+        .carousel {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content-block {
+            display: flex;
+            margin-bottom: 2rem;
+            background-color: #FFCCCB;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .content-block:nth-child(even) {
+            flex-direction: row-reverse;
+            background-color: #FF6B6B;
+        }
+        .content-block:nth-child(3n) {
+            background-color: #FF8C94;
+        }
+        .content-image {
+            flex: 1;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .content-text {
+            flex: 1;
+            padding: 2rem;
+            color: white;
+        }
+        footer {
+            background: red;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>☀️ Sunshine Caravan Holidays</h1>
+            <p>At Butlin's Minehead - Your Perfect Family Getaway!</p>
+        </div>
+        <a href="#availability" class="book-now">Book Now!</a>
+    </header>
+    
+    <main>
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item"><img src="images/caravan1.jpg" alt="Exterior view of our caravan"></div>
+                <div class="carousel-item"><img src="images/caravan2.jpg" alt="Interior view of our caravan"></div>
+                <!-- Add more carousel items as needed -->
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-image" style="background-image: url('images/fair.jpg');"></div>
+            <div class="content-text">
+                <h2>🎡 Fantastic Features</h2>
+                <p>Experience endless fun with fair rides, swimming pools with slides, go-karts, the new Skypark, bowling, laser quest, and a full entertainment programme including a circus!</p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-image" style="background-image: url('images/music-weekend1.jpg');"></div>
+            <div class="content-text">
+                <h2>🎵 Adult Music Weekenders</h2>
+                <p>Join us for exciting adult-only music weekends featuring top artists and tribute bands!</p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-image" style="background-image: url('images/fishing-lake.jpg');"></div>
+            <div class="content-text">
+                <h2>🎣 Fishing Lake</h2>
+                <p>Relax and unwind at our beautiful fishing lake, perfect for anglers of all levels.</p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-image" style="background-image: url('images/minehead-beach.jpg');"></div>
+            <div class="content-text">
+                <h2>🏖️ Minehead Beach</h2>
+                <p>Just a stone's throw away from the beautiful Minehead Beach! Enjoy sun, sand, and sea during your stay.</p>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <div class="content-image" style="background-image: url('images/golf-course.jpg');"></div>
+            <div class="content-text">
+                <h2>⛳ Golf Course</h2>
+                <p>Golf enthusiasts will love the nearby golf course. Perfect your swing during your holiday!</p>
+            </div>
+        </div>
+
+        <div id="availability">
+            <h2>📅 Check Availability</h2>
+            <iframe class="availability-calendar" name="availability-calendar" src="https://www.holidayavailabilitycalendar.com/f/1370/" width="100%" height="480" frameborder="0"></iframe>
+        </div>
+
+        <div class="content-block">
+            <div class="content-text">
+                <h2>📞 Contact Us</h2>
+                <p>Ready to book your perfect getaway? Contact Rob and Jan:</p>
+                <p>📧 Email: <a href="mailto:Sunshinecaravanholidays@gmail.com">Sunshinecaravanholidays@gmail.com</a></p>
+                <p>📱 Phone: <a href="tel:07378421421">07378 421421</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sunshine Caravan Holidays. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61552132257458" target="_blank">Facebook Page</a>
+            <a href="https://www.instagram.com/invites/contact/?i=1d3akq6lakkub&utm_content=uu6ci3l" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/groups/1112415433454628/?ref=share" target="_blank">Facebook Group</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const items = carouselInner.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % items.length;
+                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            setInterval(showNext, 5000);
+        });
+    </script>
+</body>
+</html>
