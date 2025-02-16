@@ -488,7 +488,163 @@ HTML
 </body>
 </html>
 
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HHQTBBX31B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HHQTBBX31B');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Caravan Holidays - Butlin's Minehead</title>
+    <style>
+        /* ... (Your existing CSS styles - same as before) ... */
 
+        /* Styles for the dates carousel (UPDATED) */
+        #dates-carousel-block {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #dates-carousel {
+            width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dates-carousel-inner {
+            display: flex;
+            width: fit-content;
+        }
+
+        .dates-carousel-item {
+            scroll-snap-align: start;
+            flex: 0 0 100%;
+            width: 100%;
+            height: auto;
+        }
+
+        .dates-carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover; /* Or contain */
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            border: none;
+        }
+
+        .carousel-arrow-left {
+            left: 10px;
+        }
+
+        .carousel-arrow-right {
+            right: 10px;
+        }
+
+        /* Responsive adjustments (example) */
+        @media (min-width: 768px) {
+            .dates-carousel-item {
+                flex: 0 0 33.33%; /* 3 items per row */
+                width: 33.33%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>☀️ Sunshine Caravan Holidays</h1>
+            <p>At Butlin's Minehead - Your Perfect Family Getaway!</p>
+        </div>
+        <a href="#availability" class="book-now">Book Now!</a>
+    </header>
+
+    <main>
+        <div class="content-block" id="dates-carousel-block">
+            <div class="content-image carousel" id="dates-carousel">
+                <div class="dates-carousel-inner">
+                    <div class="dates-carousel-item"><img src="images/dates1.jpg" alt="Date 1"></div>
+                    <div class="dates-carousel-item"><img src="images/dates2.jpg" alt="Date 2"></div>
+                    <div class="dates-carousel-item"><img src="images/dates3.jpg" alt="Date 3"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-left" data-target="#dates-carousel">&lt;</button>
+                <button class="carousel-arrow carousel-arrow-right" data-target="#dates-carousel">&gt;</button>
+            </div>
+            <div class="content-text">
+                <h2>🏖️ Dates</h2>
+                <p>Choose your dates.</p>
+            </div>
+        </div>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2024 Sunshine Caravan Holidays. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61552132257458" target="_blank">Facebook Page</a>
+            <a href="https://www.instagram.com/invites/contact/?i=1d3akq6lakkub&utm_content=uu6ci3l" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/groups/1112415433454628/?ref=share" target="_blank">Facebook Group</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            function createCarousel(carouselId) {
+                const $carousel = $(`#${carouselId}`);
+                const $inner = $carousel.find('.carousel-inner');
+                const $items = $inner.find('.carousel-item');
+                let currentIndex = 0;
+
+                function showNext() {
+                    currentIndex = (currentIndex + 1) % $items.length;
+                    $inner.css('transform', `translateX(-${currentIndex * 100}%)`);
+                }
+
+                setInterval(showNext, 5000);
+            }
+
+            const carouselIds = ['main-carousel', 'fair-carousel', 'music-carousel', 'fishing-carousel', 'beach-carousel', 'golf-carousel'];
+            carouselIds.forEach(createCarousel);
+
+            $('.carousel-arrow').on('click', function(e) {
+                e.preventDefault();
+                const $carousel = $(this).data('target');
+                const $inner = $($carousel).find('.dates-carousel-inner');
+                const $items = $inner.find('.dates-carousel-item');
+                const itemWidth = $items.width();
+                const scrollLeft = $inner.scrollLeft();
+                const numItems = $items.length;
+
+                let newScrollLeft;
+
+                if ($(this).hasClass('carousel-arrow-right')) {
+                    newScrollLeft = Math.min(scrollLeft + itemWidth, (numItems - 1) * itemWidth);
+                } else {
+                    newScrollLeft = Math.max(scrollLeft - itemWidth, 0);
+                }
+
+                $inner.animate({ scrollLeft: newScrollLeft }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
 
 
 
