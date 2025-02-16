@@ -438,7 +438,55 @@ HTML
 </body>
 </html>
 
+<html lang="en">
+<head>
+  </head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
 
+      function createCarousel(carouselId) {
+        const $carousel = $(`#${carouselId}`);
+        const $inner = $carousel.find('.carousel-inner');
+        const $items = $inner.find('.carousel-item');
+        let currentIndex = 0;
+
+        function showNext() {
+          currentIndex = (currentIndex + 1) % $items.length;
+          $inner.css('transform', `translateX(-${currentIndex * 100}%)`);
+        }
+
+        setInterval(showNext, 5000);
+      }
+
+      // Initialize all carousels EXCEPT dates-carousel
+      const carouselIds = ['main-carousel', 'fair-carousel', 'music-carousel', 'fishing-carousel', 'beach-carousel', 'golf-carousel'];
+      carouselIds.forEach(createCarousel);
+
+
+      // Dates carousel with scroll snap and arrows
+      $('.carousel-arrow').on('click', function() {
+        const targetCarousel = $(this).data('target'); // Get the target selector
+        const $carousel = $(targetCarousel); // Select the carousel using the selector
+        const $inner = $carousel.find('.carousel-inner');
+        const $items = $inner.find('.carousel-item');
+
+        let currentDatesIndex = $inner.scrollLeft() / $items.width();
+
+        if ($(this).hasClass('carousel-arrow-right')) {
+          currentDatesIndex = Math.min(currentDatesIndex + 1, $items.length - 1);
+        } else {
+          currentDatesIndex = Math.max(currentDatesIndex - 1, 0);
+        }
+
+        $inner.animate({ scrollLeft: currentDatesIndex * $items.width() }, 500);
+      });
+
+    });
+  </script>
+</body>
+</html>
 
 
 
