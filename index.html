@@ -370,6 +370,73 @@ HTML
         currentDatesIndex = (currentDatesIndex + 1) % $datesItems.length;
         $datesCarousel.css('
 
+<html lang="en">
+<head>
+  <title>Sunshine Caravan Holidays - Butlin's Minehead</title>
+  <style>
+    /* ... (CSS styles - same as before) ... */
+  </style>
+</head>
+<body>
+  <main>
+    <div class="content-block" id="dates-carousel-block">  <div class="content-image carousel" id="dates-carousel"> <div class="carousel-inner dates-carousel-inner"> <div class="carousel-item dates-carousel-item"><img src="images/dates1.jpg"></div>
+          <div class="carousel-item dates-carousel-item"><img src="images/dates2.jpg"></div>
+          <div class="carousel-item dates-carousel-item"><img src="images/dates3.jpg"></div>
+        </div>
+        <div class="carousel-arrow carousel-arrow-left" data-target="#dates-carousel">&lt;</div>
+        <div class="carousel-arrow carousel-arrow-right" data-target="#dates-carousel">&gt;</div>
+      </div>
+      <div class="content-text">
+        <h2>🏖️ Dates</h2>
+        <p>Choose your dates.</p>
+      </div>
+    </div>
+
+    </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      function createCarousel(carouselId) {
+        const $carousel = $(`#${carouselId}`);
+        const $inner = $carousel.find('.carousel-inner');
+        const $items = $inner.find('.carousel-item');
+        let currentIndex = 0;
+
+        function showNext() {
+          currentIndex = (currentIndex + 1) % $items.length;
+          $inner.css('transform', `translateX(-${currentIndex * 100}%)`);
+        }
+
+        setInterval(showNext, 5000);
+      }
+
+      // Initialize all carousels EXCEPT dates-carousel
+      const carouselIds = ['main-carousel', 'fair-carousel', 'music-carousel', 'fishing-carousel', 'beach-carousel', 'golf-carousel'];
+      carouselIds.forEach(createCarousel);
+
+
+      // Dates carousel with scroll snap and arrows
+      $('.carousel-arrow').on('click', function() {
+        const $carousel = $(this).data('target');
+        const $inner = $($carousel).find('.carousel-inner');
+        const $items = $inner.find('.carousel-item');
+        let currentDatesIndex = $inner.scrollLeft() / $items.width(); // Get current index
+
+        if ($(this).hasClass('carousel-arrow-right')) {
+          currentDatesIndex = Math.min(currentDatesIndex + 1, $items.length - 1); // Increment, don't go past the end
+        } else {
+          currentDatesIndex = Math.max(currentDatesIndex - 1, 0); // Decrement, don't go before the beginning
+        }
+
+        $inner.animate({ scrollLeft: currentDatesIndex * $items.width() }, 500); // Animate scrolling
+      });
+
+    });
+  </script>
+</body>
+</html>
 
 
 
