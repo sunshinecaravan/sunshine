@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HHQTBBX31B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HHQTBBX31B');
+  </script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunshine Caravan Holidays - Butlin's Minehead</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* Loading animation */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loading::after {
+      content: '';
+      width: 50px;
+      height: 50px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #c21807;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/caravan1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .header-content {
+      background-color: rgba(194, 24, 7, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .header-content:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-now {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #c21807;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-now:hover {
+      background-color: #ff033e;
+      transform: scale(1.05);
+    }
+
+    /* Main content area */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    /* Carousel styles */
+    .carousel {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+
+    .carousel-item {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: white;
+    }
+
+    /* Content block styles */
+    .content-block {
+      display: flex;
+      margin-bottom: 2rem;
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .content-block:hover {
+      transform: translateY(-5px);
+    }
+
+    .content-block:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .content-image {
+      flex: 1;
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text {
+      flex: 1;
+      padding: 2rem;
+      background: linear-gradient(45deg, #c21807, #ff033e);
+      color: white;
+    }
+
+    /* Availability section */
+    #availability {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 2rem 0;
+    }
+
+    .availability-calendar {
+      width: 100%;
+      max-width: 420px;
+      height: 480px;
+      border: none;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* Footer styles */
+    footer {
+      background: linear-gradient(45deg, #c21807, #ff033e);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #c21807;
+      color: white;
+      padding: 8px;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .content-block {
+        flex-direction: column !important;
+      }
+
+      .content-image {
+        min-height: 200px;
+      }
+
+      .carousel {
+        height: 300px;
+      }
+
+      .header-content {
+        padding: 1rem;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loading"></div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="header-content">
+      <h1>☀️ Sunshine Caravan Holidays</h1>
+      <p>At Butlin's Minehead - Your Perfect Family Getaway!</p>
+    </div>
+    <a href="#availability" class="book-now">Book Now!</a>
+  </header>
+
+  <main id="main-content">
+    <!-- Main Carousel -->
+    <div class="carousel" id="main-carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item"><img src="images/caravan1.jpg" alt="Caravan exterior view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/caravan2.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/Caravan-2.jpg" alt="Caravan exterior" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/caravan3.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/4.jpg" alt="Caravan interior" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/5.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/6.jpg" alt="Caravan interior" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/caravan7.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/caravan8.jpg" alt="Caravan exterior" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/9.jpg" alt="Caravan interior" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/10.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/bedroom1.jpg" alt="Bedroom view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/13.jpg" alt="Interior view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/14.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/15.jpg" alt="Interior view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/bedroom2.jpg" alt="Second bedroom" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/bedroom3.jpg" alt="Third bedroom" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/17.jpg" alt="Interior view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/18.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/19.jpg" alt="Interior view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/20.jpg" alt="Caravan view" loading="lazy"></div>
+        <div class="carousel-item"><img src="images/21.jpg" alt="Interior view" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-image carousel" id="fair-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item"><img src="images/fair.jpg" alt="Fair rides" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Skypark1.jpg" alt="Skypark view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/fair2.jpg" alt="Fair attractions" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Skypark.jpg" alt="Skypark activities" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Steve.jpg" alt="Entertainment" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Pool.jpg" alt="Swimming pool" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Peppapig.jpg" alt="Peppa Pig" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Swimmingpool.jpg" alt="Pool view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Sky.jpg" alt="Sky view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Darts.jpg" alt="Darts activity" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Swimmingpool1.jpg" alt="Pool facilities" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Mask.jpg" alt="Entertainment" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Fireworks.jpg" alt="Fireworks display" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Bowling.jpg" alt="Bowling alley" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Laser.jpg" alt="Laser quest" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Skypark2.jpg" alt="Skypark activities" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/fair1.jpg" alt="Fair attractions" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>🎡 Fantastic Features</h2>
+        <p>Experience endless fun with fair rides, swimming pools with slides, go-karts, the new Skypark, bowling, laser quest, and a full entertainment programme including a circus!</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-image carousel" id="music-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item"><img src="images/musicweekender.jpg" alt="Music weekender" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/Shine.jpg" alt="Shine event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/70s.jpg" alt="70s themed event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/80s.jpg" alt="80s themed event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/90s.jpg" alt="90s themed event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/2000s.jpg" alt="2000s themed event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/ibiza.jpg" alt="Ibiza themed event" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/arcade.jpg" alt="Arcade" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>🎵 Adult Music Weekenders</h2>
+        <p>Join us for exciting adult-only music weekends choose from the 70s 80s 90s 2000s plus more featuring top artists and tribute bands!</p>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-image carousel" id="fishing-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item"><img src="images/fishing lake.jpg" alt="Fishing lake view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/fishing-lake1.jpg" alt="Fishing lake scenery" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/fishing-lake2.jpg" alt="Fishing spot" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>🎣 Fishing Lake</h2>
+        <p>Relax and unwind at our beautiful fishing lake, perfect for anglers of all levels.</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-image carousel" id="beach-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item"><img src="images/minehead-beach.jpg" alt="Minehead beach" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/minehead-beach1.jpg" alt="Beach view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/minehead-beach2.jpg" alt="Beach scenery" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>🏖️ Minehead Beach</h2>
+        <p>Just a stone's throw away from the beautiful Minehead Beach! Enjoy sun, sand, and sea during your stay.</p>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-image carousel" id="golf-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item"><img src="images/golf-course.jpg" alt="Golf course" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/golf-course1.jpg" alt="Golf course view" loading="lazy"></div>
+          <div class="carousel-item"><img src="images/golf course2.jpg" alt="Golf greens" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>⛳ Golf Course</h2>
+        <p>Golf enthusiasts will love the nearby golf course. Perfect your swing during your holiday!</p>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-image carousel" id="dates-carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <a href="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates1.jpg" target="_blank">
+              <img src="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates1.jpg" alt="Dates 1" loading="lazy">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates2.jpg" target="_blank">
+              <img src="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates2.jpg" alt="Dates 2" loading="lazy">
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates3.jpg" target="_blank">
+              <img src="https://github.com/sunshinecaravan/sunshine/raw/main/images/dates3.jpg" alt="Dates 3" loading="lazy">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content-text">
+        <h2>📅 Dates</h2>
+        <p>WHATS ON - click on image</p>
+      </div>
+    </div>
+
+
+
+    <!-- Booking Information -->
+    <div class="content-block">
+      <div class="content-text">
+        <h2>📝 Book Now</h2>
+        <p>Click on enquire for your chosen dates. All prices include entertainment passes (6 on adult breaks and 8 on family breaks). All beds made up 😊</p>
+      </div>
+    </div>
+
+    <!-- Availability Calendar -->
+    <div id="availability">
+      <h2>📅 Check Availability</h2>
+      <iframe class="availability-calendar" 
+        name="availability-calendar"
+        src="https://www.holidayavailabilitycalendar.com/f/1370/" 
+        width="420" 
+        height="480" 
+        frameborder="0"
+        title="Availability Calendar">
+      </iframe>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="content-block">
+      <div class="content-text">
+        <h2>📞 Contact Us</h2>
+        <p>Ready to book your perfect getaway? Contact Rob and Jan:</p>
+        <p>📧 Email: <a href="mailto:Sunshinecaravanholidays@gmail.com">Sunshinecaravanholidays@gmail.com</a></p>
+        <p>📱 Phone: <a href="tel:07378421421">07378 421421</a></p>
+      </div>
+    </div>
+  </main>
+
+
+  <footer>
+    <p>&copy; 2024 Sunshine Caravan Holidays. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=61552132257458" target="_blank">Facebook Page</a>
+      <a href="https://www.instagram.com/invites/contact/?i=1d3akq6lakkub&utm_content=uu6ci3l" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/groups/1112415433454628/?ref=share" target="_blank">Facebook Group</a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remove loading screen once page is loaded
+      document.querySelector('.loading').style.display = 'none';
+
+      // Enhanced carousel functionality
+      function createCarousel(carouselId) {
+        const carousel = document.getElementById(carouselId);
+        const inner = carousel.querySelector('.carousel-inner');
+        const items = inner.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        // Add navigation dots
+        const controls = document.createElement('div');
+        controls.className = 'carousel-controls';
+        items.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.className = 'carousel-dot
+```         
+
+       
+          
+
+       
+
+        
+
+       
