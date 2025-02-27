@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Caravan Holidays - Luxury Caravan Holidays in the UK</title>
+    <meta name="description" content="Enjoy a relaxing stay in our luxury caravans at beautiful UK coastal locations. Book your perfect caravan holiday today!">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- New mobile-friendly styles -->
+    <style>
+        /* Base styles for all devices */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .mobile-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #0078c8;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 20px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #0078c8;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #f0f8ff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: url('images/hero-beach.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff8c00;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .cta-button:hover {
+            background-color: #e67e00;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0078c8;
+        }
+        
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .feature-item {
+            flex: 1 1 300px;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            color: #0078c8;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h3 {
+            margin-bottom: 15px;
+            color: #0078c8;
+        }
+        
+        /* Caravans Section */
+        .caravans {
+            padding: 60px 0;
+        }
+        
+        .caravans-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .caravan-card {
+            flex: 1 1 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            transition: transform 0.3s;
+        }
+        
+        .caravan-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .caravan-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .caravan-details {
+            padding: 20px;
+        }
+        
+        .caravan-details h3 {
+            margin-bottom: 10px;
+            color: #0078c8;
+        }
+        
+        .caravan-details p {
+            margin-bottom: 15px;
+        }
+        
+        .caravan-price {
+            font-weight: bold;
+            color: #ff8c00;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        /* Locations Section */
+        .locations {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .location-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .location-card {
+            flex: 1 1 300px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .location-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .location-card:hover .location-image {
+            transform: scale(1.05);
+        }
+        
+        .location-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+        
+        .location-overlay h3 {
+            margin-bottom: 5px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial-item {
+            padding: 30px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #0078c8;
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .booking-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .booking-text {
+            flex: 1 1 400px;
+        }
+        
+        .booking-text h2 {
+            margin-bottom: 20px;
+            color: #0078c8;
+        }
+        
+        .booking-text p {
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0078c8;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-column {
+            flex: 1 1 200px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                z-index: 100;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 99;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 12px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .feature-item, .caravan-card, .location-card {
+                flex: 1 1 100%;
+            }
+            
+            .testimonial-item {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .hero {
+                padding: 60px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .cta-button {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .features, .caravans, .locations, .testimonials, .booking {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 25px;
+            }
+            
+            .feature-item {
+                padding: 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="mobile-nav">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt="Sunshine Caravan Holidays"></a>
+                </div>
+                <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="caravans.html">Our Caravans</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="attractions.html">Local Attractions</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Perfect Caravan Holiday Awaits</h1>
+            <p>Enjoy a relaxing stay in our luxury caravans at beautiful UK coastal locations</p>
+            <a href="booking.html" class="cta-button">Book Now</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Sunshine Caravan Holidays?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏖️</div>
+                    <h3>Prime Locations</h3>
+                    <p>Our caravans are situated in the most beautiful coastal areas of the UK, just minutes from sandy beaches.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h3>Luxury Accommodation</h3>
+                    <p>All our caravans are modern, spacious and equipped with high-quality furnishings for your comfort.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Friendly</h3>
+                    <p>We provide everything families need for a perfect holiday, from games to baby equipment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="caravans">
+        <div class="container">
+            <h2 class="section-title">Our Luxury Caravans</h2>
+            <div class="caravans-grid">
+                <div class="caravan-card">
+                    <img src="images/caravan1.jpg" alt="Deluxe Caravan" class="caravan-image">
+                    <div class="caravan-details">
+                        <h3>Deluxe Caravan</h3>
+                        <p>Spacious 2 bedroom caravan with modern amenities and sea views.</p>
+                        <div class="caravan-price">From £450 per week</div>
+                        <a href="caravans.html#deluxe" class="cta-button">View Details</a>
+                    </div>
+                </div>
+                <div class="caravan-card">
+                    <img src="images/caravan2.jpg" alt="Premium Caravan" class="caravan-image">
+                    <div class="caravan-details">
+                        <h3>Premium Caravan</h3>
+                        <p>Luxurious 3 bedroom caravan with private decking and BBQ area.</p>
+                        <div class="caravan-price">From £550 per week</div>
+                        <a href="caravans.html#premium" class="cta-button">View Details</a>
+                    </div>
+                </div>
+                <div class="caravan-card">
+                    <img src="images/caravan3.jpg" alt="Family Caravan" class="caravan-image">
+                    <div class="caravan-details">
+                        <h3>Family Caravan</h3>
+                        <p>Spacious 4 bedroom caravan perfect for larger families and groups.</p>
+                        <div class="caravan-price">From £650 per week</div>
+                        <a href="caravans.html#family" class="cta-button">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="locations">
+        <div class="container">
+            <h2 class="section-title">Our Beautiful Locations</h2>
+            <div class="location-grid">
+                <div class="location-card">
+                    <img src="images/location1.jpg" alt="Devon Coast" class="location-image">
+                    <div class="location-overlay">
+                        <h3>Devon Coast</h3>
+                        <p>Stunning beaches and coastal paths</p>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <img src="images/location2.jpg" alt="Cornwall" class="location-image">
+                    <div class="location-overlay">
+                        <h3>Cornwall</h3>
+                        <p>Beautiful bays and surfing spots</p>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <img src="images/location3.jpg" alt="Dorset" class="location-image">
+                    <div class="location-overlay">
+                        <h3>Dorset</h3>
+                        <p>Jurassic coast and charming villages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Guests Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"We had the most wonderful holiday at Sunshine Caravans. The accommodation was spotless and so comfortable. The kids loved being so close to the beach!"</p>
+                    <p class="testimonial-author">- The Johnson Family</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking">
+        <div class="container">
+            <div class="booking-content">
+                <div class="booking-text">
+                    <h2>Ready to Book Your Perfect Holiday?</h2>
+                    <p>Check availability and book online today. We offer flexible booking options and great seasonal deals.</p>
+                    <a href="booking.html" class="cta-button">Check Availability</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sunshine Caravan Holidays</h3>
+                    <p>Providing luxury caravan holidays in the UK's most beautiful coastal locations since 2005.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>Phone: 01234 567890</li>
+                        <li>Email: info@sunshinecaravanholidays.com</li>
+                        <li>Address: Sunshine House, Beach Road, Devon, UK</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="caravans.html">Our Caravans</a></li>
+                        <li><a href="locations.html">Locations</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sunshine Caravan Holidays. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navMenu.contains(event.target) || menuToggle.contains(event.target);
+                if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+            
+            // Close menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
