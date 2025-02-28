@@ -755,7 +755,7 @@ In our 3 bedroom luxury holiday home!</p>
       <div class="content-text">
         <h2><i class="fas fa-calendar-alt"></i> What's On</h2>
         <p>Click on any image to view available dates and special events at Butlin's Minehead.</p>
-        <p><strong>SPECIAL OFFER: 10% OFF all 2025 bookings made during March 2025!</strong> Use code: <span style="background: #ffcc00; padding: 2px 5px; color: #333;">MARCH2025</span> when booking.</p>
+        <p><strong>SPECIAL OFFER: 10% OFF all 2025 bookings made during March 2025!</strong> : <span style="background: #ffcc00; padding: 2px 5px; color: #333;"></span> .</p>
       </div>
     </div>
 
@@ -791,7 +791,136 @@ In our 3 bedroom luxury holiday home!</p>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script
+```javascript
+$(document).ready(function () {
+  function createCarousel(carouselId) {
+    const $carousel = $(`#${carouselId}`);
+    const $inner = $carousel.find('.carousel-inner');
+    const $items = $inner.find('.carousel-item');
+    const $nav = $carousel.find('.carousel-nav');
+    let currentIndex = 0;
+    let interval;
+
+    // Create navigation dots
+    $items.each(function(i) {
+      const $dot = $('<div class="carousel-dot"></div>');
+      if (i === 0) $dot.addClass('active');
+      $dot.on('click', function() {
+        currentIndex = i;
+        updateCarousel();
+      });
+      $nav.append($dot);
+    });
+
+    // Touch support variables
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % $items.length;
+      updateCarousel();
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + $items.length) % $items.length;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      $inner.css('transform', `translateX(-${currentIndex * 100}%)`);
+      $nav.find('.carousel-dot').removeClass('active').eq(currentIndex).addClass('active');
+    }
+
+    // Add touch event listeners
+    $carousel[0].addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    
+    $carousel[0].addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX) {
+        // Swipe left - show next
+        showNext();
+      } else if (touchEndX > touchStartX) {
+        // Swipe right - show previous
+        showPrev();
+      }
+    }
+
+    // Auto rotation
+    interval = setInterval(showNext, 5000);
+
+    // Pause on hover
+    $carousel.hover(
+      function() { clearInterval(interval); },
+      function() { interval = setInterval(showNext, 5000); }
+    );
+
+    // Add click handlers for prev/next
+    $carousel.append(`
+      <div style="position: absolute; top: 50%; transform: translateY(-50%); left: 10px; z-index: 10; cursor: pointer; background: rgba(0,0,0,0.3); color: white; padding: 10px; border-radius: 50%;">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div style="position: absolute; top: 50%; transform: translateY(-50%); right: 10px; z-index: 10; cursor: pointer; background: rgba(0,0,0,0.3); color: white; padding: 10px; border-radius: 50%;">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    `);
+
+    $carousel.find('.fa-chevron-left').parent().on('click', showPrev);
+    $carousel.find('.fa-chevron-right').parent().on('click', showNext);
+  }
+
+  // Initialize all carousels
+  createCarousel('main-carousel');
+  createCarousel('fair-carousel');
+  createCarousel('music-carousel');
+  createCarousel('fishing-carousel');
+  createCarousel('beach-carousel');
+  createCarousel('golf-carousel');
+  createCarousel('dates-carousel');
+  
+  // Back to top button functionality
+  const $backToTop = $('<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>');
+  $('body').append($backToTop);
+  
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 300) {
+      $backToTop.addClass('visible');
+    } else {
+      $backToTop.removeClass('visible');
+    }
+  });
+  
+  $backToTop.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 500);
+  });
+  
+  // Discount Modal functionality
+  setTimeout(function() {
+    $('#discountModal').css('display', 'flex');
+  }, 3000);
+  
+  $('.close-modal').on('click', function() {
+    $('#discountModal').hide();
+  });
+  
+  function closeModal() {
+    $('#discountModal').hide();
+  }
+  
+  $(window).on('click', function(event) {
+    if ($(event.target).is('#discountModal')) {
+      $('#discountModal').hide();
+    }
+  });
+});
+``` src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
       function createCarousel(carouselId) {
