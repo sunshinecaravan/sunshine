@@ -791,5 +791,163 @@ In our 3 bedroom luxury holiday home!</p>
     </div>
   </footer>
 
+</script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all carousels
+  const carousels = document.querySelectorAll('.carousel');
+  
+  // Initialize each carousel
+  carousels.forEach(function(carousel) {
+    const inner = carousel.querySelector('.carousel-inner');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+    let currentIndex = 0;
+    let intervalId;
+    
+    // Function to show a specific slide
+    function showSlide(index) {
+      // Handle index bounds
+      if (index >= totalItems) {
+        index = 0;
+      } else if (index < 0) {
+        index = totalItems - 1;
+      }
+      
+      // Update current index
+      currentIndex = index;
+      
+      // Move the carousel
+      inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+    
+    // Create navigation arrows
+    const prevArrow = document.createElement('div');
+    prevArrow.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevArrow.className = 'carousel-arrow carousel-prev';
+    prevArrow.style.cssText = 'position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.5); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;';
+    
+    const nextArrow = document.createElement('div');
+    nextArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextArrow.className = 'carousel-arrow carousel-next';
+    nextArrow.style.cssText = 'position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(0,0,0,0.5); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;';
+    
+    // Add event listeners to arrows
+    prevArrow.addEventListener('click', function() {
+      showSlide(currentIndex - 1);
+      resetInterval();
+    });
+    
+    nextArrow.addEventListener('click', function() {
+      showSlide(currentIndex + 1);
+      resetInterval();
+    });
+    
+    // Add arrows to carousel
+    carousel.appendChild(prevArrow);
+    carousel.appendChild(nextArrow);
+    
+    // Function to start automatic rotation
+    function startInterval() {
+      intervalId = setInterval(function() {
+        showSlide(currentIndex + 1);
+      }, 5000);
+    }
+    
+    // Function to reset interval
+    function resetInterval() {
+      clearInterval(intervalId);
+      startInterval();
+    }
+    
+    // Add swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    
+    carousel.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      
+      if (touchEndX < touchStartX - 50) {
+        // Swipe left - next slide
+        showSlide(currentIndex + 1);
+        resetInterval();
+      } else if (touchEndX > touchStartX + 50) {
+        // Swipe right - previous slide
+        showSlide(currentIndex - 1);
+        resetInterval();
+      }
+    }, false);
+    
+    // Pause on hover
+    carousel.addEventListener('mouseenter', function() {
+      clearInterval(intervalId);
+    });
+    
+    carousel.addEventListener('mouseleave', function() {
+      startInterval();
+    });
+    
+    // Start the carousel
+    startInterval();
+  });
+  
+  // Discount modal
+  const discountModal = document.getElementById('discountModal');
+  if (discountModal) {
+    setTimeout(function() {
+      discountModal.style.display = 'flex';
+    }, 3000);
+    
+    // Close button
+    const closeBtn = discountModal.querySelector('.close-modal');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        discountModal.style.display = 'none';
+      });
+    }
+    
+    // Close when clicking outside
+    window.addEventListener('click', function(event) {
+      if (event.target === discountModal) {
+        discountModal.style.display = 'none';
+      }
+    });
+  }
+  
+  // Back to top button
+  const backToTop = document.createElement('a');
+  backToTop.href = '#';
+  backToTop.className = 'back-to-top';
+  backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+  document.body.appendChild(backToTop);
+  
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+  
+  backToTop.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  
+  // Define the closeModal function in global scope
+  window.closeModal = function() {
+    if (discountModal) {
+      discountModal.style.display = 'none';
+    }
+  };
+});
+```
+
  
 ```
