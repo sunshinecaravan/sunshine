@@ -243,13 +243,62 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Responsive Calendar Container */
+    .calendar-container {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Calendar iframe wrapper */
+    .calendar-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Calendar iframe */
     .availability-calendar {
       width: 100%;
-      max-width: 520px;
-      height: 480px;
-      margin: 0 auto;
-      display: block;
+      height: 750px; /* Increased height for vertical view */
+      transform-origin: top left;
       border: none;
+      transition: all 0.3s ease;
+    }
+    
+    /* Expand/Collapse button */
+    .calendar-expand-btn {
+      display: block;
+      background-color: #c21807;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 300px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: none;
+    }
+    
+    /* Calendar month navigation */
+    .calendar-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    
+    .calendar-nav button {
+      background-color: #c21807;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     /* Contact Section */
@@ -388,6 +437,8 @@
         grid-template-columns: 1fr 1fr;
         gap: 20px;
       }
+.availability-calendar {
+        height: 480px; /* Return to original height on larger screens */
     }
   </style>
 </head>
@@ -617,12 +668,24 @@ alt="images.jpeg"></div>
       </div>
     </div>
 
-    <div id="availability" class="availability-section">
-      <h2><span class="emoji">📅</span> Check Availability</h2>
-      <p>Find your perfect dates and book your dream holiday. Remember, book in March for 10% OFF all 2025 breaks!</p>
-      <iframe class="availability-calendar" name="availability-calendar"
-        src="https://www.holidayavailabilitycalendar.com/f/1370/" width="520" height="480" frameborder="0"></iframe>
+     <div id="availability" class="availability-section">
+    <h2><span class="emoji">📅</span> Check Availability</h2>
+    <p>Find your perfect dates and book your dream holiday. Remember, book in March for 10% OFF all 2025 breaks!</p>
+    
+    <div class="calendar-nav">
+      <button id="prev-month">&lt; Previous Month</button>
+      <button id="next-month">Next Month &gt;</button>
     </div>
+    
+    <button class="calendar-expand-btn" id="expand-calendar">Expand Calendar View</button>
+    
+    <div class="calendar-container">
+      <div class="calendar-wrapper">
+        <iframe id="availability-calendar" class="availability-calendar" name="availability-calendar"
+          src="https://www.holidayavailabilitycalendar.com/f/1370/" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
 
     <div class="contact-section">
       <h2><span class="emoji">📞</span> Contact Us</h2>
@@ -757,7 +820,55 @@ Butlins caravan hire minehead would love your feedback. Post a review to our pro
         $('.promo-banner').css('animation', 'pulse 2s infinite');
       }, 1000);
     });
+
+   $(document).ready(function() {
+      // Your existing JavaScript
+      
+      // Calendar expand/collapse functionality
+      let isExpanded = false;
+      const $calendarFrame = $('#availability-calendar');
+      const $expandBtn = $('#expand-calendar');
+      
+      $expandBtn.on('click', function() {
+        if (isExpanded) {
+          $calendarFrame.css({
+            'height': $(window).width() < 768 ? '750px' : '480px',
+            'transform': 'scale(1)'
+          });
+          $expandBtn.text('Expand Calendar View');
+        } else {
+          $calendarFrame.css({
+            'height': '1000px',
+            'transform': 'scale(1.2)'
+          });
+          $expandBtn.text('Collapse Calendar View');
+        }
+        isExpanded = !isExpanded;
+      });
+      
+      // Responsive height adjust on load
+      if ($(window).width() < 768) {
+        $calendarFrame.css('height', '750px');
+      }
+      
+      // Month navigation
+      $('#prev-month').on('click', function() {
+        const calendarWindow = $calendarFrame[0].contentWindow;
+        if (calendarWindow && calendarWindow.postMessage) {
+          calendarWindow.postMessage('prev-month', '*');
+        }
+      });
+      
+      $('#next-month').on('click', function() {
+        const calendarWindow = $calendarFrame[0].contentWindow;
+        if (calendarWindow && calendarWindow.postMessage) {
+          calendarWindow.postMessage('next-month', '*');
+        }
+      });
+    });
   </script>
+</body>
+</html> </script>
 </body>
 </html>
 ```
